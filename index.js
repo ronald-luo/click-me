@@ -25,17 +25,49 @@ new Glider(document.querySelector(".glider"), {
     let div = document.getElementById('fix-it-button')
     div.addEventListener('click', (e) => {
         data.clicks += 1
-        console.log(data.clicks)
+        // console.log(data.clicks)
         if (data.clicks === 1) {
             firstAttempt()
         } else if (data.clicks > 2) {
-            // otherEvents()
+            otherEvents()
         }
     })
 })()
 
 let data = {
     clicks: 0,
+}
+
+let events = {
+    '0' : function () {
+        let lightbulb = document.getElementById('bulb')
+        lightbulb.src = "media/broken.png"
+    },
+    '1' : function () {
+        let smiley = document.getElementById('smile')
+        smiley.src = "media/sad.png"
+    },
+    '2' : function () {
+        let beat = document.getElementById('beat-yourself')
+        beat.textContent = "Start Beating Yourself Up"
+    },
+    '3' : function () {
+        let good = document.getElementById('good')
+        good.textContent = "Good."
+    }
+}
+
+let replies = ["ONCE. IT SAID ONCE", "???????", "STILL HERE?", "MOVE ALONG", "BYE.", "forgot how to read?", "incredible."]
+
+let textEvents = {
+    '0' : function () {
+        let h2 = document.getElementById('container-h2')
+        h2.textContent = replies[Math.floor(Math.random() * replies.length)]
+    },
+    '1' : function () {
+        let h1 = document.getElementById('container-h1')
+        h1.textContent = replies[Math.floor(Math.random() * replies.length)]
+    }
 }
 
 function firstAttempt () {
@@ -53,7 +85,7 @@ function firstAttempt () {
         largeText.textContent = "Congrats"
         
 
-    }, 3000)
+    }, 10000)
 }
 
 // function otherEvents () {
@@ -66,11 +98,11 @@ function firstAttempt () {
 // }
 
 function otherEvents () {
-    let lightbulb = document.getElementById('bulb')
-    let body = document.querySelector('body')
-    body.setAttribute('style', 'transform: rotateY(180deg);')
+    let eventsLength = Object.keys(events).length
+    let randIndex1 = Math.floor( Math.random() * eventsLength )
+    events[randIndex1]()
 
-    setTimeout(() => {
-        body.setAttribute('style', 'transform: rotateY(0deg);')
-    }, 1000)
+    let textEventsLength = Object.keys(textEvents).length
+    let randIndex2  = Math.floor( Math.random() * textEventsLength  )
+    textEvents[randIndex2]()
 }

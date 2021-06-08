@@ -1,95 +1,307 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora&family=Poppins&display=swap");
 
-$color_1: #1d2027;
-$color_2: #363c49;
-$color_3: #323844;
-$color_4: #a91fb3;
-$color_5: #dc27e9;
-$padding: 4em;
-$font1: "Poppins", sans-serif;
-$font2: "Lora", serif;
-$desktop: 700px;
-
-@mixin desktop {
-  @media (min-width: #{$desktop}) {
-    @content;
-  }
-}
-
 *,
 *:before,
 *:after {
   box-sizing: border-box;
 }
 
-body {
-  background-color: rgb(230, 230, 230);
-  font-family: $font1;
-  color: white;
+$padding: 5em;
+$color_1: #23272a;
+$color_2: #2c2f33;
+$color_3: #99aab5;
+$color_4: white;
+$color_5: #a7465d;
+$font_2: "Lora", serif;
+$font_1: "Poppins", sans-serif;
+
+$phone: 840px;
+
+@mixin phone {
+  @media (max-width: #{$phone}) {
+    @content;
+  }
 }
 
-header {
-  background-color: $color_2;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 0 auto 0 auto;
-  padding: 1em;
-  height: 80vh;
-  width: 80vw;
-  border-radius: 5%;
+body {
+  background-color: $color_1;
+  color: $color_4;
+  font-family: $font_1;
+}
 
-  h1 {
-    font-size: 9.708vw;
-    align-self: center;
+.container {
+  padding: 1em;
+  display: block;
+  height: 90vh;
+  width: 80vw;
+  background-color: $color_2;
+  margin: 0 auto 20vh auto;
+  border-radius: 50px;
+  text-align: center;
+
+  @include phone {
+    height: 110vh;
   }
 
   h2 {
-    text-align: center;
-    font-family: $font2;
-    font-size: 6vw;
-    align-self: center;
+    padding-top: 8em;
+    font-family: $font_2;
+    color: $color_3;
   }
 
-  #try-btn {
-    text-align: center;
-    align-self: center;
-    margin: 0.5em;
-    background-color: red;
-    padding: 0.6em 2em 0.6em 2em;
-    border-radius: 5%;
+  h1 {
+    font-size: 300%;
   }
 
-  #code-btn {
+  .cta {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    padding-top: 2em;
+    width: 100vw;
+    height: 10vh;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    @include phone {
+      top: 75%;
+    }
+
+    .switch {
+      position: relative;
+      display: block;
+      width: 90px;
+      height: 55px;
+      margin-bottom: 30px;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: $color_5;
+      transition: 0.5s;
+      border: 3px solid black;
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      bottom: 14px;
+      left: 0;
+      top: 8px;
+      background-color: $color_4;
+      transition: 0.5s;
+    }
+
+    .switch input {
+      display: none;
+    }
+
+    input:checked + .slider {
+      background-color: $color_5;
+    }
+    input:checked + .slider:before {
+      transform: translateX(47px) rotateZ(45deg);
+      background: $color_4;
+    }
+
+    .slider.round {
+      border-radius: 35px;
+    }
+
+    .slider.round:before {
+      width: 43%;
+      height: 43%;
+      border-top-left-radius: 50px;
+      border-top-right-radius: 50px;
+      transform: rotateZ(-45deg);
+    }
+  }
+
+  .loader {
+    position: absolute;
+    width: 100vw;
+    left: 0;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    top: 70%;
+    @include phone {
+      top: 95%;
+    }
+
+    .progress {
+      background: rgba(255, 255, 255, 0.1);
+      justify-content: flex-start;
+      border-radius: 100px;
+      align-items: center;
+      position: relative;
+      padding: 0 5px;
+      display: flex;
+      height: 40px;
+      width: 60vw;
+    }
+
+    .progress-value {
+      animation: load 10s normal forwards;
+      box-shadow: 0 10px 40px -10px #fff;
+      border-radius: 100px;
+      background: #fff;
+      height: 30px;
+      width: 0;
+    }
+
+    @keyframes load {
+      0% {
+        width: 0;
+      }
+
+      60% {
+        width: 68%;
+      }
+      100% {
+        width: 100%;
+        background: rgb(108, 255, 108);
+        box-shadow: 0 10px 40px -10px rgb(108, 255, 108);
+      }
+    }
+  }
+}
+
+.glider-contain {
+  padding: 0 10vw 0 10vw;
+
+  h2 {
     text-align: center;
-    align-self: center;
-    margin: 0.5em;
-    padding: 0.6em 2em 0.6em 2em;
-    border: solid 1px red;
+    font-size: 2.8rem;
+    position: relative;
+  }
+
+  .glider-next {
+    right: 50px;
+    top: 50%;
+    @include phone {
+      margin: 1.5em 0 0 0;
+    }
+  }
+
+  .glider-prev {
+    left: 50px;
+    top: 50%;
+    @include phone {
+      margin: 1.5em 0 0 0;
+    }
+  }
+}
+
+.glider {
+  figure {
+    background: white;
+    display: block;
+    margin: 1.5em;
+    padding: 0.7em;
+    background: $color_2;
+    border-radius: 15%;
+  }
+
+  blockquote {
+    padding: 0.5em;
+    font-size: 1.3em;
+    font-style: italic;
+    text-align: center;
+    color: white;
+    @include phone {
+      height: 25vh;
+      padding: 1em 0 1em 0;
+    }
+  }
+
+  figcaption {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: grey;
+  }
+}
+
+.info {
+  margin: 20vh 0 0 0;
+  padding: 0 10vw 0 10vw;
+  display: grid;
+  grid-template-columns: repeat(2, 40vw);
+  justify-content: center;
+
+  @include phone {
+    grid-template-columns: repeat(1, 80vw);
+    justify-content: center;
+    margin: 3em 0 3em 0;
+  }
+
+  img {
+    max-height: 300px;
+    margin: 0 auto 0 auto;
+
+    @include phone {
+      height: 250px;
+      margin: 0 auto 0 auto;
+    }
+  }
+
+  .info-box {
+    display: inline-block;
+    position: relative;
+    max-height: 500px;
+    max-width: 500px;
+    @include phone {
+      width: 80vw;
+      text-align: center;
+    }
+
+    h2 {
+      padding-top: 5vh;
+      color: $color_4;
+      font-size: 2.8rem;
+    }
+
+    h3 {
+      color: $color_3;
+      font-family: $font_2;
+      font-size: 1.5rem;
+    }
+  }
+
+  #right {
+    text-align: right;
+    @include phone {
+      text-align: center;
+    }
   }
 }
 
 footer {
-  display: grid;
-  justify-items: center;
-  position: absolute;
-  height: 10vh;
-  width: 100vw;
-  background-color: $color_1;
+  margin-top: 5em;
+  background-color: $color_2;
+  position: relative;
   left: 0;
   bottom: 0;
+  width: 100vw;
+  height: 4em;
+  text-align: center;
+
   ul li {
     list-style: none;
     display: inline-block;
+    margin: 1.25em 3.5em 0 0;
   }
+
   a {
     text-decoration: none;
-    color: white;
-    margin: 0 5vw 0 0;
-    font-size: 4vw;
-  }
-  #rluo {
-    font-size: 6.4721vw;
+    color: $color_4;
   }
 }
