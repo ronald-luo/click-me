@@ -7,11 +7,11 @@
 }
 
 $padding: 5em;
-$color_1: #23272a;
-$color_2: #2c2f33;
-$color_3: #99aab5;
-$color_4: white;
-$color_5: #a7465d;
+$color_1: #343a40;
+$color_2: #214246;
+$color_3: #a7c4bc;
+$color_4: #a7c4bc;
+$color_5: #25292e;
 $font_2: "Lora", serif;
 $font_1: "Poppins", sans-serif;
 
@@ -226,7 +226,7 @@ body {
     font-size: 0.9em;
     text-transform: uppercase;
     font-weight: bold;
-    color: grey;
+    color: $color_3;
   }
 }
 

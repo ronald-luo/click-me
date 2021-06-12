@@ -36,6 +36,7 @@ new Glider(document.querySelector(".glider"), {
 
 let data = {
     clicks: 0,
+    replies: ["ONCE. IT SAID ONCE", "???????", "STILL HERE?", "MOVE ALONG", "BYE.", "forgot how to read?", "incredible.", "leave my child alone!", "please stop it hurts"]
 }
 
 let events = {
@@ -57,16 +58,14 @@ let events = {
     }
 }
 
-let replies = ["ONCE. IT SAID ONCE", "???????", "STILL HERE?", "MOVE ALONG", "BYE.", "forgot how to read?", "incredible."]
-
 let textEvents = {
     '0' : function () {
         let h2 = document.getElementById('container-h2')
-        h2.textContent = replies[Math.floor(Math.random() * replies.length)]
+        h2.textContent = data.replies[Math.floor(Math.random() * data.replies.length)]
     },
     '1' : function () {
         let h1 = document.getElementById('container-h1')
-        h1.textContent = replies[Math.floor(Math.random() * replies.length)]
+        h1.textContent = data.replies[Math.floor(Math.random() * data.replies.length)]
     }
 }
 
@@ -88,15 +87,6 @@ function firstAttempt () {
     }, 10000)
 }
 
-// function otherEvents () {
-//     let body = document.querySelector('body')
-//     body.setAttribute('style', 'transform: rotateY(180deg);')
-
-//     setTimeout(() => {
-//         body.setAttribute('style', 'transform: rotateY(0deg);')
-//     }, 1000)
-// }
-
 function otherEvents () {
     let eventsLength = Object.keys(events).length
     let randIndex1 = Math.floor( Math.random() * eventsLength )
@@ -106,3 +96,12 @@ function otherEvents () {
     let randIndex2  = Math.floor( Math.random() * textEventsLength  )
     textEvents[randIndex2]()
 }
+
+// function otherEvents () {
+//     let body = document.querySelector('body')
+//     body.setAttribute('style', 'transform: rotateY(180deg);')
+
+//     setTimeout(() => {
+//         body.setAttribute('style', 'transform: rotateY(0deg);')
+//     }, 1000)
+// }
